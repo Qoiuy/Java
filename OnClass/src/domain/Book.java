@@ -8,11 +8,19 @@ public class Book {
 	 * 生成有参构造函数
 	 * 生成无参构造函数
 	 * */
+	
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", name=" + name + ", anthor=" + anthor
+				+ ", price=" + price + ", imageName=" + imageName
+				+ ", description=" + description + ", categoryid=" + categoryid
+				+ "]";
+	}
 	public Book() {
 		super();
 		// TODO 自动生成的构造函数存根
 	}
-	public Book(String id, String name, String anthor, String price,
+	public Book(String id, String name, String anthor, float price,
 			String imageName, String description, String categoryid) {
 		super();
 		this.id = id;
@@ -22,13 +30,6 @@ public class Book {
 		this.imageName = imageName;
 		this.description = description;
 		this.categoryid = categoryid;
-	}
-	@Override
-	public String toString() {
-		return "Book [id=" + id + ", name=" + name + ", anthor=" + anthor
-				+ ", price=" + price + ", imageName=" + imageName
-				+ ", description=" + description + ", categoryid=" + categoryid
-				+ "]";
 	}
 	public String getId() {
 		return id;
@@ -48,10 +49,10 @@ public class Book {
 	public void setAnthor(String anthor) {
 		this.anthor = anthor;
 	}
-	public String getPrice() {
+	public float getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
 	public String getImageName() {
@@ -75,7 +76,7 @@ public class Book {
 	private String id;
 	private String name;
 	private String anthor;
-	private String price;
+	private float price;
 	private String imageName;
 	private String description;
 	private String categoryid;
