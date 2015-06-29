@@ -8,7 +8,7 @@ public class Customer {
 	}
 	public Customer(String id, String username, String password, String sex,
 			String email, String telephone, String description, String address,
-			String actived, String code, String role) {
+			int actived, String code, int role) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -24,7 +24,7 @@ public class Customer {
 	}
 	@Override
 	public String toString() {
-		return "customer [id=" + id + ", username=" + username + ", password="
+		return "Customer [id=" + id + ", username=" + username + ", password="
 				+ password + ", sex=" + sex + ", email=" + email
 				+ ", telephone=" + telephone + ", description=" + description
 				+ ", address=" + address + ", actived=" + actived + ", code="
@@ -78,10 +78,10 @@ public class Customer {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getActived() {
+	public int getActived() {
 		return actived;
 	}
-	public void setActived(String actived) {
+	public void setActived(int actived) {
 		this.actived = actived;
 	}
 	public String getCode() {
@@ -90,10 +90,10 @@ public class Customer {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public String getRole() {
+	public int getRole() {
 		return role;
 	}
-	public void setRole(String role) {
+	public void setRole(int role) {
 		this.role = role;
 	}
 	private String id;
@@ -105,7 +105,7 @@ public class Customer {
 	private String description;
 	private String address;
 	
-	private String actived;//是否激活
+	private int actived;//是否激活
 	private String code;//激活码
-	private String role;//代表是否为管理员	
+	private int role;//代表是否为管理员	
 }
