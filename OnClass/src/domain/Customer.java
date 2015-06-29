@@ -107,5 +107,5 @@ public class Customer {
 	
 	private String actived;//是否激活
 	private String code;//激活码
-	private String role;//代表是否为管理员
+	private String role;//代表是否为管理员	
 }
