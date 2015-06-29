@@ -5,9 +5,7 @@ package domain;
  * 
  */
 public class Category {
-	private String id;
-	private String name;
-	private String description;
+	
 	public Category() {
 		super();
 		// TODO 自动生成的构造函数存根
@@ -17,6 +15,11 @@ public class Category {
 		this.id = id;
 		this.name = name;
 		this.description = description;
+	}
+	@Override
+	public String toString() {
+		return "Category [id=" + id + ", name=" + name + ", description="
+				+ description + "]";
 	}
 	public String getId() {
 		return id;
@@ -36,10 +39,8 @@ public class Category {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	private String id;
+	private String name;
+	private String description;
 	
-	@Override
-	public String toString() {
-		return "Category [id=" + id + ", name=" + name + ", description="
-				+ description + "]";
-	}
 } 
