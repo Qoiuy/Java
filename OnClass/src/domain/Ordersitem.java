@@ -1,23 +1,26 @@
 package domain;
 
 public class Ordersitem {
+	                            
 	public Ordersitem() {
 		super();
 		// TODO 自动生成的构造函数存根
 	}
-	public Ordersitem(String id, String num, String price, String bookid,
-			String ordersid) {
+	public Ordersitem(String id, int num, float price, Book book,
+			String bookid, String ordersid) {
 		super();
 		this.id = id;
 		this.num = num;
 		this.price = price;
+		this.book = book;
 		this.bookid = bookid;
 		this.ordersid = ordersid;
 	}
 	@Override
 	public String toString() {
 		return "Ordersitem [id=" + id + ", num=" + num + ", price=" + price
-				+ ", bookid=" + bookid + ", ordersid=" + ordersid + "]";
+				+ ", book=" + book + ", bookid=" + bookid + ", ordersid="
+				+ ordersid + "]";
 	}
 	public String getId() {
 		return id;
@@ -25,17 +28,23 @@ public class Ordersitem {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getNum() {
+	public int getNum() {
 		return num;
 	}
-	public void setNum(String num) {
+	public void setNum(int num) {
 		this.num = num;
 	}
-	public String getPrice() {
+	public float getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(float price) {
 		this.price = price;
+	}
+	public Book getBook() {
+		return book;
+	}
+	public void setBook(Book book) {
+		this.book = book;
 	}
 	public String getBookid() {
 		return bookid;
@@ -50,8 +59,9 @@ public class Ordersitem {
 		this.ordersid = ordersid;
 	}
 	private String id;
-	private String num;
-	private String price;
+	private int num;
+	private float price;
+	private Book book;
 	private String bookid;
 	private String ordersid;
 }
