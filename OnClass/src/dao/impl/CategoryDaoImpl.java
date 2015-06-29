@@ -3,7 +3,8 @@ package dao.impl;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
-import utils.C3P0Util;
+
+import utils.C3P0Utils;
 
 import org.apache.commons.dbutils.QueryRunner;
 
@@ -14,7 +15,7 @@ public class CategoryDaoImpl implements CategoryDao {
 
 	//private QueryRunner qr = new QueryRunner(C3P0Utils.getDataSource());//用于执行CURL命令
 	
-	private QueryRunner qr = new QueryRunner(C3P0Util.getDataSource());
+	private QueryRunner qr = new QueryRunner(C3P0Utils.getDataSource());
 	@Override
 	public void save(Category category) {
 		//PreparedStatement 预处理 sql语句中有?作为占位符  
