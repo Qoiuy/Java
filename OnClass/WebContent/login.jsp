@@ -53,16 +53,13 @@
 																	</td>
 																</tr>
 																<tr>
-																	<td colspan="2" style="text-align:center"><input
-																		type="checkbox" name="checkbox" value="checkbox" />
-																		记住用户名&nbsp;&nbsp; <input type="checkbox"
-																		name="checkbox" value="checkbox" /> 自动登录</td>
+																	<td colspan="2" style="text-align:center"></td>
 																</tr>
 																<tr>
 																	<td colspan="2"
 																		style="padding-top:10px; text-align:center"><input
 																		name="image" type="image" onclick="return formcheck()"
-																		src="images/loginbutton.gif" width="83" height="22" />
+																		src="${pageContext.request.contextPath }/images/loginbutton.gif" width="83" height="22" />
 																	</td>
 																</tr>
 

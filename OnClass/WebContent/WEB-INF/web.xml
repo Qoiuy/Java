@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <servlet>
   	<servlet-name>ClientServlet</servlet-name>
-  	<servlet-class>web.servlet.CelentServlet</servlet-class>
+  	<servlet-class>web.servlet.ClientServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   <servlet-name>ClientServlet</servlet-name>
