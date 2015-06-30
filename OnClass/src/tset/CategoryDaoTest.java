@@ -23,10 +23,10 @@ public class CategoryDaoTest {
 		dao.update(c);
 	}
 	
-//	@Test //注解 Jnuit单元的注解
-//	public void  testDelete(){
-//		CategoryDao dao = new  CategoryDaoImpl();
-//		dao.delete("123456");
-//	}
+	@Test //注解 Jnuit单元的注解
+	public void  testDelete(){
+		CategoryDao dao = new  CategoryDaoImpl();
+		dao.delete("123456");
+	}
 	
 }
