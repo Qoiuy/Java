@@ -37,9 +37,21 @@ public class ClientServlet extends HttpServlet {
 				if("login".equals(op)){
 					//登录
 					login(request,response);
+				}else if("logout".equals(op)){
+					//注销
+					logout(request,response);
 				}
+				
+				
 			}
 			
+			private void logout(HttpServletRequest request, HttpServletResponse response) 
+					throws ServletException, IOException{
+			//1. 将session域中的用户信息清除
+				request.getSession().removeAttribute("user");
+				response.sendRedirect(request.getContextPath() + "/index.jsp");
+			}
+
 			//登录
 			private void login(HttpServletRequest request, HttpServletResponse response) 
 					throws ServletException, IOException {
