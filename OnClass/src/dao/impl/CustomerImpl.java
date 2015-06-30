@@ -53,7 +53,7 @@ public class CustomerImpl implements CustomerDao {
 	 */
 	public Customer findCustomerByUsernameAndPwd(String username, String password){
 		try {
-			return qr.query("select * from customer where username=? and password=?",
+			return qr.query("select * from customer where username=? and password=? and actived=1",
 					 new BeanHandler<Customer>(Customer.class),username,password);
 		} catch (SQLException e) {
 			e.printStackTrace();
