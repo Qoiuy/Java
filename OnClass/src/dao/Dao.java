@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * 操作实体的Dao接口声明
+ * (将Dao接口抽取出来)
  * @author root
  *
  * @param <T>

@@ -1,10 +1,6 @@
 package dao;
 
-
-import java.io.Serializable;
-import java.util.List;
-
-import domain.*;
+import domain.Category;
 
 /**
  * 操作Category实体的Dao接口声明
