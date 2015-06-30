@@ -35,7 +35,7 @@ public class Md5Utils {
 	public void testMd5(){
 		for(int i = 0;i <200; i++)
 		{
-			System.out.println(Md5Utils.encode("aa" + i));
+			System.out.println(Md5Utils.encode("123"));
 		}
 	}
 	

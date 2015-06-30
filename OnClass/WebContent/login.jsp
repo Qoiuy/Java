@@ -59,7 +59,7 @@
 																	<td colspan="2"
 																		style="padding-top:10px; text-align:center"><input
 																		name="image" type="image" onclick="return formcheck()"
-																		src="${pageContext.request.contextPath }/images/loginbutton.gif" width="83" height="22" />
+																		src="images/loginbutton.gif" width="83" height="22" />
 																	</td>
 																</tr>
 
