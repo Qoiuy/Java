@@ -68,8 +68,7 @@ public class ClientServlet extends HttpServlet {
 			//4将session中用户信息更新
 				session.setAttribute("user", customer);//没有必要
 			//5跳转到更新成功页面
-				request.getRequestDispatcher("/modifyUserInfoSuccess.jsp").forward(request, response);//转发
-				
+				response.sendRedirect("/OnClass/modifyUserInfoSuccess.jsp");
 			} 
 
 			private void logout(HttpServletRequest request, HttpServletResponse response) 
