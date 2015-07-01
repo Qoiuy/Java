@@ -84,10 +84,11 @@
 										</tr>
 										<tr>
 											<td style="text-align:right">性别：</td>
-											<td colspan="2">&nbsp;&nbsp;<input type="radio"
-												name="sex" value="男" ${(sessionScope.user.sex == '男'?"checked":"")} /> 男
-												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
-												type="radio" name="sex	" value="女" ${(sessionScope.user.sex == '女'?"checked":"")}/> 女</td>
+											<td colspan="2">&nbsp;&nbsp;
+											<input type="radio"	name="sex" value="男" ${(sessionScope.user.sex == '男'?"checked":"")} /> 男
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="radio" name="sex" value="女" ${(sessionScope.user.sex == '女'?"checked":"")}/> 女
+											</td>
 										</tr>
 										<tr>
 											<td style="text-align:right">联系方式：</td>
