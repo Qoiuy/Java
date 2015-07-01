@@ -2,10 +2,12 @@ package web.servlet;
 
 import java.io.IOException;
 
+import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import domain.Customer;
 import service.CustomerService;
@@ -21,7 +23,7 @@ public class ClientServlet extends HttpServlet {
 	private CustomerService customerService = new CustomerServiceImpl();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		doPost(request,response);
+		this.doPost(request,response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
@@ -40,16 +42,41 @@ public class ClientServlet extends HttpServlet {
 				}else if("logout".equals(op)){
 					//注销
 					logout(request,response);
+				}else if("modifyUserinfo".equals(op)){
+					//修改用户信息
+					modifyUserinfo(request,response);
 				}
 				
 				
 			}
 			
+			private void modifyUserinfo(HttpServletRequest request,HttpServletResponse response) 
+					throws ServletException, IOException{
+			//1获取文本框的取值
+				String password =request.getParameter("password");
+				String sex =request.getParameter("sex");
+				String telephone =request.getParameter("telephone");
+				String id =request.getParameter("id");
+			//2更新对象中的属性值
+				HttpSession session = request.getSession();
+				Customer customer = (Customer)session.getAttribute("user");
+				customer.setPassword(password);
+				customer.setSex(sex);
+				customer.setTelephone(telephone);
+			//3调用业务方法，实现更新操作
+				customerService.update(customer);
+			//4将session中用户信息更新
+				session.setAttribute("user", customer);//没有必要
+			//5跳转到更新成功页面
+				request.getRequestDispatcher("/modifyUserInfoSuccess.jsp").forward(request, response);//转发
+				
+			} 
+
 			private void logout(HttpServletRequest request, HttpServletResponse response) 
 					throws ServletException, IOException{
 			//1. 将session域中的用户信息清除
 				request.getSession().removeAttribute("user");
-				response.sendRedirect(request.getContextPath() + "/index.jsp");
+				response.sendRedirect(request.getContextPath());
 			}
 
 			//登录

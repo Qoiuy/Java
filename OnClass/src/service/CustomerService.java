@@ -16,4 +16,9 @@ public interface CustomerService {
 	 * @return
 	 */
 	public Customer login(String username, String password);
+	/**
+	 * 更新用户信息
+	 * @param customer
+	 */
+	public void update(Customer customer);
 }

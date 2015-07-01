@@ -22,8 +22,17 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public void update(Customer t) {
-		// TODO 自动生成的方法存根
-		
+		try {
+			
+
+			String sql = "update customer set username=?,password=?,sex=?,"+
+					"email=?,telephone=?,description=?,address=?,actived=?,"+
+					"code=?,role=? where id=?";
+			qr.update(sql,t.getUsername(),t.getPassword(),t.getSex(),t.getEmail(),t.getTelephone(),t.getDescription(),t.getAddress(),t.getActived(),t.getCode(),t.getRole(),t.getId());
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}	
 	}
 
 	@Override

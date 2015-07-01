@@ -5,9 +5,9 @@
 <html>
 <head>
 <title>电子书城</title>
-<link rel="stylesheet" href="css/main.css" type="text/css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" type="text/css" />
 
-<script type="text/javascript" src="js/my.js">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/my.js">
 	
 </script>
 </head>
@@ -27,7 +27,7 @@
 							</td>
 							<td style="padding-top:30px"><font
 								style="font-weight:bold; color:#FF0000">用户信息修改成功，请重新登录</font><br /> <br />
-								<a href="index.html"><span id="second">5</span>秒后自动为您转跳回首页</a></td>
+								<a href="${pageContext.request.contextPath}/index.jsp"><span id="second">5</span>秒后自动为您转跳回首页</a></td>
 						</tr>
 					</table>
 					<h1>&nbsp;</h1></td>

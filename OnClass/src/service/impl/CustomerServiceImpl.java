@@ -17,5 +17,12 @@ public class CustomerServiceImpl implements CustomerService{
 		return customerDao.findCustomerByUsernameAndPwd(username, password);
 	}
 
+	@Override
+	//更新
+	public void update(Customer customer) {
+		customer.setPassword(Md5Utils.encode(customer.getPassword()));
+		customerDao.update(customer);	
+	}
+
 }
 
