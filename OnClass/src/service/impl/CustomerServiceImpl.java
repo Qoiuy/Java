@@ -34,8 +34,7 @@ public class CustomerServiceImpl implements CustomerService{
 	@Test // 测试regist
 	public void registtest(){
 		Customer c = new Customer("3333","222","33333","男","1010255393@qq.com","1834726373","你好","你好",0,"0",0);
-		
-		
+		regist(c);
 	}
 
 }
