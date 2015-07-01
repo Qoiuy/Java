@@ -21,4 +21,9 @@ public interface CustomerService {
 	 * @param customer
 	 */
 	public void update(Customer customer);
+	/**
+	 * 注册
+	 * @param customer
+	 */
+	public void regist(Customer customer);
 }

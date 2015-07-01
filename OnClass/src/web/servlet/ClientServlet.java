@@ -1,6 +1,8 @@
 package web.servlet;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.UUID;
 
 import javax.mail.Session;
 import javax.servlet.ServletException;
@@ -9,9 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.beanutils.BeanUtils;
+
 import domain.Customer;
 import service.CustomerService;
 import service.impl.CustomerServiceImpl;
+import utils.IDGenerator;
 /**
  * 前端控制器
  * @author root
@@ -45,11 +50,47 @@ public class ClientServlet extends HttpServlet {
 				}else if("modifyUserinfo".equals(op)){
 					//修改用户信息
 					modifyUserinfo(request,response);
+				}else if("register".equals(op)){
+					//注册
+					register(request,response);
 				}
 				
 				
 			}
-			
+			//注册
+			private void register(HttpServletRequest request,HttpServletResponse response) 
+					throws ServletException, IOException{
+				Customer  customer= new Customer();
+			//1获取每个文本框的值  beanUtils框架实现封装 commons-beanutils.jar commmons-logging-xx.jar
+				try {
+					BeanUtils.populate(customer, request.getParameterMap());
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					e.printStackTrace();
+				}
+			//2校验
+			//3判断用户输入验证码是否正确
+				String inputcode = request.getParameter("captchaImage");
+				String code = (String)request.getSession().getAttribute("code");
+				if (inputcode.equals(code)){
+					
+					//4调用业务方法，实现添加功能						
+					customerService.regist(customer);
+						//对于没有赋值的属性进行手动赋值
+					customer.setId(IDGenerator.genID());
+					customer.setActived(0);
+					customer.setId(IDGenerator.genCode());
+					customer.setRole(0);
+					//5跳转到registersuccess.jsp
+					response.sendRedirect(request.getContextPath() + "/registersuccess.jsp");
+				}else {
+					//6验证码输入有误
+					response.getWriter().write("对不起，验证码输入有误！请重试");
+					response.setHeader("Refresh","2;URL="+request.getContextPath()+"/regist.jsp");
+				}
+			}
+
 			private void modifyUserinfo(HttpServletRequest request,HttpServletResponse response) 
 					throws ServletException, IOException{
 			//1获取文本框的取值

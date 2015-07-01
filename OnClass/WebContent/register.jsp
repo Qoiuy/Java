@@ -24,7 +24,7 @@
 	<%@include file="menu_search.jsp"%><%--导入导航条与搜索 --%>
 
 	<div id="divcontent">
-		<form action="${pageContext.request.contextPath}/register"
+		<form action="${pageContext.request.contextPath}/servlet/ClientServlet?=register"
 			method="post">
 			<table width="850px" border="0" cellspacing="0">
 				<tr>
@@ -61,9 +61,9 @@
 							<tr>
 								<td style="text-align:right">性别：</td>
 								<td colspan="2">&nbsp;&nbsp;<input type="radio"
-									name="gender" value="男" checked="checked" /> 男
+									name="sex" value="男" checked="checked" /> 男
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio"
-									name="gender" value="女" /> 女</td>
+									name="sex" value="女" /> 女</td>
 							</tr>
 							<tr>
 								<td style="text-align:right">联系电话：</td>
@@ -72,7 +72,7 @@
 							</tr>
 							<tr>
 								<td style="text-align:right">个人介绍：</td>
-								<td colspan="2"><textarea class="textarea" name="introduce"></textarea>
+								<td colspan="2"><textarea class="textarea" name="description"></textarea>
 								</td>
 							</tr>
 
@@ -84,7 +84,7 @@
 						<table width="80%" border="0" cellspacing="2" class="upline">
 							<tr>
 								<td style="text-align:right; width:20%">输入校验码：</td>
-								<td style="width:50%"><input type="text" class="textinput" />
+								<td style="width:50%"><input type="text" class="textinput" name ="captchaImage"/>
 								</td>
 								<td>&nbsp;</td>
 							</tr>

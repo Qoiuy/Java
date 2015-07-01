@@ -1,5 +1,7 @@
 package service.impl;
 
+import org.junit.Test;
+
 import dao.CustomerDao;
 import dao.impl.CustomerDaoImpl;
 import domain.Customer;
@@ -22,6 +24,18 @@ public class CustomerServiceImpl implements CustomerService{
 	public void update(Customer customer) {
 		customer.setPassword(Md5Utils.encode(customer.getPassword()));
 		customerDao.update(customer);	
+	}
+
+	@Override
+	public void regist(Customer customer) {
+		customer.setPassword(Md5Utils.encode(customer.getPassword()));
+		customerDao.save(customer);		
+	}
+	@Test // 测试regist
+	public void registtest(){
+		Customer c = new Customer("3333","222","33333","男","1010255393@qq.com","1834726373","你好","你好",0,"0",0);
+		
+		
 	}
 
 }
