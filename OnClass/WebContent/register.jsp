@@ -24,7 +24,7 @@
 	<%@include file="menu_search.jsp"%><%--导入导航条与搜索 --%>
 
 	<div id="divcontent">
-		<form action="${pageContext.request.contextPath}/servlet/ClientServlet?=register"
+		<form action="${pageContext.request.contextPath}/servlet/ClientServlet?op=register"
 			method="post">
 			<table width="850px" border="0" cellspacing="0">
 				<tr>

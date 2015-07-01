@@ -75,19 +75,19 @@ public class ClientServlet extends HttpServlet {
 				String code = (String)request.getSession().getAttribute("code");
 				if (inputcode.equals(code)){
 					
-					//4调用业务方法，实现添加功能						
-					customerService.regist(customer);
+					//4调用业务方法，实现添加功能				
 						//对于没有赋值的属性进行手动赋值
 					customer.setId(IDGenerator.genID());
 					customer.setActived(0);
 					customer.setId(IDGenerator.genCode());
 					customer.setRole(0);
+					customerService.regist(customer);
 					//5跳转到registersuccess.jsp
 					response.sendRedirect(request.getContextPath() + "/registersuccess.jsp");
 				}else {
 					//6验证码输入有误
 					response.getWriter().write("对不起，验证码输入有误！请重试");
-					response.setHeader("Refresh","2;URL="+request.getContextPath()+"/regist.jsp");
+					response.setHeader("Refresh","2;URL="+request.getContextPath()+"/register.jsp");
 				}
 			}
 
@@ -95,9 +95,9 @@ public class ClientServlet extends HttpServlet {
 					throws ServletException, IOException{
 			//1获取文本框的取值
 				String password =request.getParameter("password");
-				String sex =request.getParameter("sex");
-				String telephone =request.getParameter("telephone");
-				String id =request.getParameter("id");
+				String sex = request.getParameter("sex");
+				String telephone = request.getParameter("telephone");
+				String id = request.getParameter("id");
 			//2更新对象中的属性值
 				HttpSession session = request.getSession();
 				Customer customer = (Customer)session.getAttribute("user");
