@@ -11,7 +11,7 @@
 <script type="text/javascript">
 	function changeImage() {
 
-		document.getElementById("img").src = "${pageContext.request.contextPath}/imageCode?time="
+		document.getElementById("img").src = "${pageContext.request.contextPath}/servlet/captchaCode?time="
 				+ new Date().getTime();
 	}
 </script>
@@ -91,7 +91,7 @@
 							<tr>
 								<td style="text-align:right;width:20%;">&nbsp;</td>
 								<td colspan="2" style="width:50%"><img
-									src="${pageContext.request.contextPath}/imageCode" width="180"
+									src="${pageContext.request.contextPath}/servlet/captchaCode" width="180"
 									height="30" class="textinput" style="height:30px;" id="img" />&nbsp;&nbsp;
 									<a href="javascript:void(0);" onclick="changeImage()">看不清换一张</a>
 								</td>
