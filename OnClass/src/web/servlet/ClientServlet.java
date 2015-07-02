@@ -2,6 +2,7 @@ package web.servlet;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.UUID;
 
 import javax.mail.Session;
@@ -13,8 +14,11 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import domain.Category;
 import domain.Customer;
+import service.CategoryService;
 import service.CustomerService;
+import service.impl.CategoryServiceImpl;
 import service.impl.CustomerServiceImpl;
 import utils.IDGenerator;
 /**
@@ -26,6 +30,7 @@ import utils.IDGenerator;
 public class ClientServlet extends HttpServlet {
        
 	private CustomerService customerService = new CustomerServiceImpl();
+	private CategoryService categoryservice = new CategoryServiceImpl();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		this.doPost(request,response);
@@ -54,9 +59,24 @@ public class ClientServlet extends HttpServlet {
 					//注册
 					register(request,response);
 				}
+				else if("findAllCategories".equals(op)){
+					findAllCategories(request,response);
+				}
 				
 				
 			}
+			//查询分类列表
+			private void findAllCategories(HttpServletRequest request,HttpServletResponse response) 
+					throws ServletException, IOException{
+				//1调用业务方法，实现查询分类列表
+				List<Category> list = categoryservice.findAll();
+				//2将查询结果放入request域中
+				request.setAttribute("categories", list);
+				//3转发index2.jsp
+				//response.sendRedirect("/OnClass/index2.jsp");//值放在request域中不转发不行
+			    request.getRequestDispatcher("/index2.jsp").forward(request, response);
+	}
+
 			//注册
 			private void register(HttpServletRequest request,HttpServletResponse response) 
 					throws ServletException, IOException{

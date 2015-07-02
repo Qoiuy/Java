@@ -7,10 +7,17 @@ import java.util.List;
 import utils.C3P0Utils;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import dao.CategoryDao;
 import domain.Category;
-
+import domain.Customer;
+/**
+ * 分类的Dao
+ * @author root
+ *
+ */
 public class CategoryDaoImpl implements CategoryDao {
 
 	//private QueryRunner qr = new QueryRunner(C3P0Utils.getDataSource());//用于执行CURL命令
@@ -56,8 +63,14 @@ public class CategoryDaoImpl implements CategoryDao {
 	}
 
 	@Override
-	public List<Category> findAll() {
-				return null;
+	public List<Category> findAll() { 
+		try {
+			return qr.query("select * from category",
+					 new BeanListHandler<Category>(Category.class) );
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
 	}
 
 }
