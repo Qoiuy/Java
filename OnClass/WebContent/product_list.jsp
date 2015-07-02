@@ -25,7 +25,10 @@
 						<a href="index.jsp">首页</a>&nbsp;&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp;&nbsp;计算机&nbsp;&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp;&nbsp;图书列表
 					</div>
 
+			
+
 					<table cellspacing="0" class="listcontent">
+					<c:forEach items="${page.recordes}"  var="book">
 						<tr>
 							<td>
 								<h1>商品目录</h1>
@@ -88,7 +91,7 @@
 
 
 									</tr>
-							
+							</c:forEach>
 								</table>
 								<%@include file="page.jsp" %>
 							</td>

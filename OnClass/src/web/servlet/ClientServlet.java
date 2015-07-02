@@ -16,11 +16,14 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import domain.Category;
 import domain.Customer;
+import service.BookService;
 import service.CategoryService;
 import service.CustomerService;
+import service.impl.BookServiceImpl;
 import service.impl.CategoryServiceImpl;
 import service.impl.CustomerServiceImpl;
 import utils.IDGenerator;
+import utils.PageBean;
 /**
  * 前端控制器
  * @author root
@@ -31,6 +34,7 @@ public class ClientServlet extends HttpServlet {
        
 	private CustomerService customerService = new CustomerServiceImpl();
 	private CategoryService categoryservice = new CategoryServiceImpl();
+	private BookService bookService = new BookServiceImpl();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		this.doPost(request,response);
@@ -60,11 +64,38 @@ public class ClientServlet extends HttpServlet {
 					register(request,response);
 				}
 				else if("findAllCategories".equals(op)){
+					//查询分类列表
 					findAllCategories(request,response);
 				}
-				
+				else if("findBooksByCategoryID".equals(op)){
+					//分页查询，指定分类下的记录
+					findBooksByCategoryID(request,response);
+				}
 				
 			}
+			//分页查询，指定分类下的记录
+			private void findBooksByCategoryID(HttpServletRequest request,HttpServletResponse response)
+					throws ServletException, IOException{{
+		                //1.获取参数id
+		                String id = request.getParameter("id");
+		                //2.生成分页组件对象
+		                PageBean page = new PageBean();
+		                //3.设置新的当前页
+		                String pageNo = request.getParameter("pageNo");//当点击页面上的分页条时，所传递的参数
+		                if(pageNo!=null && pageNo.trim().length()>0){
+		                        page.setPageNo(Integer.parseInt(pageNo));
+		                }
+		                //4.调用业务方法，实现分页功能 
+		                bookService.findBooksByCategoryIdAndPage(page, id);
+		                //5.设置新的url地址
+		                page.setUrl(request.getContextPath()+"/servlet/ClientServlet?op=findBooksByCategoryID&id="+id);
+		                //6.将分页组件对象放入request域中
+		                request.setAttribute("page", page);
+		                //7.转发
+		                request.getRequestDispatcher("/product_list.jsp").forward(request, response);
+					}
+			}
+
 			//查询分类列表
 			private void findAllCategories(HttpServletRequest request,HttpServletResponse response) 
 					throws ServletException, IOException{
