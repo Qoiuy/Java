@@ -61,7 +61,7 @@
 											</div>
 										</td>
 										<td><c:if test="${st.count%4==0 }">
-												</tr>
+												
 											</c:if>
 									</c:forEach>
 
