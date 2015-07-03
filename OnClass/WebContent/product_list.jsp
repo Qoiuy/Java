@@ -1,6 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -50,12 +49,14 @@
 													<a href="${pageContext.request.contextPath }/servlet/ClientServlet?op=findBookDetailById&id=${book.id}">
 													<img src="${pageContext.request.contextPath }/bookcover/${book.imageName}"
 														width="115" height="129" border="0" /> </a>
+																				
 												</p>
 											</div>
 
 											<div class="divlisttitle">
 													<a href="${pageContext.request.contextPath }/servlet/ClientServlet?op=findBookDetailById&id=${book.id}">
-													${book.name }<br />售价:${book.categoryid}<!-- ${myfun:findCategoryNameByid(book.categoryid) } -->
+													${book.name }<br />售价:${book.price } 
+													
 												</a>
 											</div>
 										</td>

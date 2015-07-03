@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 
+<%@taglib uri="http://www.itcast.cn/myjstl/myfuns"  prefix="myfun" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -53,8 +54,9 @@
 											class="bookname">&nbsp;&nbsp;${book.name }</font>
 
 											<hr />售价：<font color="#FF0000">￥${book.price }</font>
-											<hr /> 类别：${book.categoryid}
-
+											<hr /> 类别：${myfun:findCategoryNameByid(book.categoryid) }
+									<!-- ${myfun:findCategoryNameByid(book.categoryid) } -->
+													<!-- ${book.categoryid} -->
 											<hr />
 											<p>
 												<b>内容简介：</b>

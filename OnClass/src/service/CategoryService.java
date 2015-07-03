@@ -15,5 +15,11 @@ public interface CategoryService {
 	 * @return
 	 */
 	public List<Category> findAll();
+	/**
+	 * 根据分类ID，得到一个分类对象
+	 * @param id
+	 * @return
+	 */
+	public Category findCategoryById(String id);
 
 }

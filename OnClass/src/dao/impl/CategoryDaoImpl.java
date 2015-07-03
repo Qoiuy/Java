@@ -59,7 +59,14 @@ public class CategoryDaoImpl implements CategoryDao {
 
 	@Override
 	public Category findOne(Serializable id) {
-				return null;
+		  try {
+              return qr.query("select * from category where id=?" ,
+                              new BeanHandler<Category>(Category.class),id);
+      } catch (SQLException e) {
+              e.printStackTrace();
+              throw new RuntimeException(e);
+      }
+ 
 	}
 
 	@Override
