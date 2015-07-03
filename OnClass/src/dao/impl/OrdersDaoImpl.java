@@ -67,22 +67,22 @@ public class OrdersDaoImpl implements OrdersDao {
 	}
 
 	@Override
-	public List<Orders> findOrdersByCustomerID(String id) {
-		  try {
-              List<Orders> list =  qr.query("select * from orders where customerid=?",
-                              new BeanListHandler<Orders>(Orders.class), id);
-              //级联加载
-              for(Orders orders :list){
-                      Customer c= qr.query("select * from Customer where id=?", new BeanHandler<Customer>(Customer.class),orders.getCustomerid());
-                  orders.setC(c);
-              }
-              return list;
-      } catch (SQLException e) {
-              e.printStackTrace();
-              throw new RuntimeException(e);
-      }
+	  public List<Orders> findOrdersByCustomerID(String id) {
+        try {
+                List<Orders> list =  qr.query("select * from orders where customerid=?",
+                                new BeanListHandler<Orders>(Orders.class), id);
+                //级联加载
+                for(Orders orders :list){
+                        Customer c= qr.query("select * from customer where id=?", new BeanHandler<Customer>(Customer.class),orders.getCustomerid());
+                    orders.setC(c);
+                }
+                return list;
+        } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+        }
+}
+
 		
-				
-	}
 
 }

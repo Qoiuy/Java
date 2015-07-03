@@ -1,9 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <title>电子书城</title>
-<link rel="stylesheet" href="css/main.css" type="text/css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" type="text/css" />
 </head>
 
 <body class="main">
@@ -19,19 +20,19 @@
 							<td class="listtitle">我的帐户</td>
 						</tr>
 						<tr>
-							<td class="listtd"><img src="images/miniicon.gif" width="9"
+							<td class="listtd"><img src="${pageContext.request.contextPath}/images/miniicon.gif" width="9"
 								height="6" />&nbsp;&nbsp;&nbsp;&nbsp; <a
-								href="modifyuserinfo.jsp">用户信息修改</a>
+								href="${pageContext.request.contextPath}/modifyuserinfo.jsp">用户信息修改</a>
 							</td>
 						</tr>
 
 						<tr>
-							<td class="listtd"><img src="images/miniicon.gif" width="9"
-								height="6" />&nbsp;&nbsp;&nbsp;&nbsp; <a href="orderlist.jsp">订单查询</a>
+							<td class="listtd"><img src="${pageContext.request.contextPath}/images/miniicon.gif" width="9"
+								height="6" />&nbsp;&nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/orderlist.jsp">订单查询</a>
 							</td>
 						</tr>
 						<tr>
-							<td class="listtd"><img src="images/miniicon.gif" width="9"
+							<td class="listtd"><img src="${pageContext.request.contextPath}/images/miniicon.gif" width="9"
 								height="6" />&nbsp;&nbsp;&nbsp;&nbsp; <a href="#">用戶退出</a></td>
 						</tr>
 
@@ -53,8 +54,8 @@
 					</table>
 				</td>
 				<td><div style="text-align:right; margin:5px 10px 5px 0px">
-						<a href="index.jsp">首页</a>&nbsp;&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp;<a
-							href="myAccount.jsp">&nbsp;我的帐户</a>&nbsp;&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp;&nbsp;订单查询
+						<a href="${pageContext.request.contextPath}/index.jsp">首页</a>&nbsp;&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp;<a
+							href="${pageContext.request.contextPath}/myAccount.jsp">&nbsp;我的帐户</a>&nbsp;&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp;&nbsp;订单查询
 					</div>
 
 
@@ -77,28 +78,18 @@
 									</tr>
 
 
+									    <c:forEach items="${list }" var="orders">
+                                                                        <tr>
+                                                                                <td class="tableopentd02">${orders.id }</td>
 
-									<tr>
-										<td class="tableopentd02">001</td>
-
-										<td class="tableopentd02">tom</td>
-										<td class="tableopentd02">2012-10-10</td>
-										<td class="tableopentd02">未支付</td>
-										<td class="tableopentd03"><a href="orderInfo.jsp">查看</a>&nbsp;&nbsp;
-											<a href="#">刪除</a>
-										</td>
-									</tr>
+                                                                                <td class="tableopentd02">${orders.c.username }</td>
+                                                                                <td class="tableopentd02">${(orders.status==0)?'未付款':(orders.status==1?'已付款':'已发货') }</td>
+                                                                                <td class="tableopentd03"><a href="${pageContext.request.contextPath }/orderInfo.jsp">查看</a>&nbsp;&nbsp;
+                                                                                        <a href="#">刪除</a>
+                                                                                </td>
+                                                                        </tr>
+                                                                </c:forEach>
 									
-									<tr>
-										<td class="tableopentd02">002</td>
-
-										<td class="tableopentd02">张三</td>
-										<td class="tableopentd02">2014-10-10</td>
-										<td class="tableopentd02">已支付</td>
-										<td class="tableopentd03"><a href="orderInfo.jsp">查看</a>&nbsp;&nbsp;
-											<a href="#">刪除</a>
-										</td>
-									</tr>
 								</table>
 							</td>
 						</tr>

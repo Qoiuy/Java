@@ -102,9 +102,35 @@ public class ClientServlet extends HttpServlet {
 					//付款 组织数据发给第三方
 					payMoney(request,response);
 				}
+				else if("queryOrders".equals(op)){
+					//查询我的订单
+					queryOrders(request,response);
+				}
 				
 			}
-	//付款 组织数据发给第三方
+	//查询我的订单
+	private void queryOrders(HttpServletRequest request,HttpServletResponse response) 
+	 		throws ServletException, IOException{  //1.得到当前登录的用户信息
+        HttpSession session = request.getSession();
+        Customer customer = (Customer) session.getAttribute("user");
+        if(customer==null){
+                //说明没有登录
+                response.getWriter().write("对不起，您没有登录，请先登录，再查询我的订单！");
+                response.setHeader("Refresh", "2;URL="+request.getContextPath()+"/login.jsp");
+                return ;
+        }
+        //2.调用业务，查询当前用户的订单信息
+        List<Orders> list = ordersService.findOrdersByCustomerID(customer.getId());
+        //3.将订单信息放入request域中
+        request.setAttribute("list",list);
+        request.setAttribute("count",list.size());
+        //4.转发orderlist.jsp
+        request.getRequestDispatcher("/orderlist.jsp").forward(request, response);
+
+				
+	}
+
+			//付款 组织数据发给第三方
 			private void payMoney(HttpServletRequest request,HttpServletResponse response) 
 			 		throws ServletException, IOException{
 				 //1.接收参数
