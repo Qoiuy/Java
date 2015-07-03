@@ -75,7 +75,7 @@
 											<table cellspacing="1" class="carttable">
 												<tr>
 													<td style="text-align:right; padding-right:40px;"><font
-														style="color:#FF6600; font-weight:bold">合计：&nbsp;&nbsp;xx元</font>
+														style="color:#FF6600; font-weight:bold">合计：&nbsp;&nbsp;${sessionScope.cart.totalPrice} 元</font>
 													</td>
 												</tr>
 											</table>
