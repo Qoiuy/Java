@@ -81,8 +81,30 @@ public class ClientServlet extends HttpServlet {
 					//购买
 					buyBook(request,response);
 				}
+				else if("deleteBookInCart".equals(op)){
+					//购物车中删除一个条目
+					deleteBookInCart(request,response);
+				}
 				
 			}
+	
+	
+			//购物车中删除一个条目
+			private void deleteBookInCart(HttpServletRequest request,HttpServletResponse response) 
+			 		throws ServletException, IOException{
+				  //1.获取参数id
+                String id = request.getParameter("id");
+                //2.在购物车中找到要删除的条目，并进行删除
+                HttpSession session = request.getSession();
+                Cart cart = (Cart) session.getAttribute("cart");
+                if(cart.getMap().containsKey(id)){
+                        cart.getMap().remove(id);
+                }
+                //3.再跳到cart.jsp
+                response.sendRedirect(request.getContextPath()+"/cart.jsp");
+
+			}
+
 			private void buyBook(HttpServletRequest request,HttpServletResponse response) 
 			 		throws ServletException, IOException{
 				   //1.获取要购买书籍的id
