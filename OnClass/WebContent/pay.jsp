@@ -15,7 +15,8 @@
 </head>
 
 <body>
-	<form action="${pageContext.request.contextPath}/paysuccess.jsp" method="post">
+	 <form action="${pageContext.request.contextPath }/servlet/ClientServlet?op=payMoney" method="post">
+	
 	 <input type="hidden" name="oid" value="${o.ordernum }" />
            <input type="hidden" name="price" value="0.01" />
 	
