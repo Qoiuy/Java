@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import domain.Book;
 import domain.Category;
 import domain.Customer;
 import service.BookService;
@@ -71,11 +72,29 @@ public class ClientServlet extends HttpServlet {
 					//分页查询，指定分类下的记录
 					findBooksByCategoryID(request,response);
 				}
+				else if("findBookDetailById".equals(op)){
+					//根据图书编号 查看详情
+					findBookDetailById(request,response);
+				}
 				
 			}
+	 //根据图书编号，查看详情
+			private void findBookDetailById(HttpServletRequest request,HttpServletResponse response) 
+					throws ServletException, IOException{
+				  //1.先得到参数id
+                String id = request.getParameter("id");
+                //2.根据id,得到一个Book对象
+                Book book = bookService.findBookById(id);
+                //3.将这个Book对象，保存到request域中
+                request.setAttribute("book", book);
+                //4.转发product_info.jsp
+                request.getRequestDispatcher("/product_info.jsp").forward(request,response);
+
+	}
+
 			//分页查询，指定分类下的记录
 			private void findBooksByCategoryID(HttpServletRequest request,HttpServletResponse response)
-					throws ServletException, IOException{{
+					throws ServletException, IOException{
 		                //1.获取参数id
 		                String id = request.getParameter("id");
 		                //2.生成分页组件对象
@@ -94,7 +113,7 @@ public class ClientServlet extends HttpServlet {
 		                //7.转发
 		                request.getRequestDispatcher("/product_list.jsp").forward(request, response);
 					}
-			}
+			
 
 			//查询分类列表
 			private void findAllCategories(HttpServletRequest request,HttpServletResponse response) 

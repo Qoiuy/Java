@@ -1,5 +1,6 @@
 package service;
 
+import domain.Book;
 import utils.PageBean;
 
 public interface BookService {
@@ -8,6 +9,13 @@ public interface BookService {
 	 * @param page
 	 * @param categoryid
 	 */
-	        public void findBooksByCategoryIdAndPage(PageBean page,String categoryid);
+	 public void findBooksByCategoryIdAndPage(PageBean page,String categoryid);
+
+	 /**
+	  * 根据ID获得图书对象
+	  * @param id
+	  * @return
+	  */
+	 public Book findBookById(String id);
 
 }

@@ -47,15 +47,15 @@
 
 											<div class="divbookpic">
 												<p>
-													<a href="product_info.jsp"><img
-														src="${pageContext.request.contextPath }/bookcover/${book.imageName}"
+													<a href="${pageContext.request.contextPath }/servlet/ClientServlet?op=findBookDetailById&id=${book.id}">
+													<img src="${pageContext.request.contextPath }/bookcover/${book.imageName}"
 														width="115" height="129" border="0" /> </a>
 												</p>
 											</div>
 
 											<div class="divlisttitle">
-												<a
-													href="${pageContext.request.contextPath }/product_info.jsp">${book.name }<br />售价:${book.price }
+													<a href="${pageContext.request.contextPath }/servlet/ClientServlet?op=findBookDetailById&id=${book.id}">
+													${book.name }<br />售价:${book.categoryid}<!-- ${myfun:findCategoryNameByid(book.categoryid) } -->
 												</a>
 											</div>
 										</td>
