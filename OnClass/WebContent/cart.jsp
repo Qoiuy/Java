@@ -85,8 +85,8 @@
 													src="${pageContext.request.contextPath }/images/gwc_jx.gif" border="0" /> </a>
 
 												&nbsp;&nbsp;&nbsp;&nbsp;<a
-													href="${pageContext.request.contextPath }/order.jsp"><img
-													src="${pageContext.request.contextPath }/images/gwc_buy.gif" border="0" /> </a>
+													href="${pageContext.request.contextPath }/servlet/ClientServlet?op=generatorOrders">
+													<img src="${pageContext.request.contextPath }/images/gwc_buy.gif" border="0" /> </a>
 											</div>
 										</td>
 									</tr>

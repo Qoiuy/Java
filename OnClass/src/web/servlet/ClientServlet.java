@@ -2,7 +2,9 @@ package web.servlet;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.mail.Session;
@@ -17,15 +19,20 @@ import org.apache.commons.beanutils.BeanUtils;
 import domain.Book;
 import domain.Category;
 import domain.Customer;
+import domain.Orders;
+import domain.OrdersItem;
 import service.BookService;
 import service.CategoryService;
 import service.CustomerService;
+import service.OrdersService;
 import service.impl.BookServiceImpl;
 import service.impl.CategoryServiceImpl;
 import service.impl.CustomerServiceImpl;
+import service.impl.OrdersServiceImpl;
 import utils.IDGenerator;
 import utils.PageBean;
 import web.form.Cart;
+import web.form.CartItem;
 /**
  * 前端控制器
  * @author root
@@ -37,6 +44,7 @@ public class ClientServlet extends HttpServlet {
 	private CustomerService customerService = new CustomerServiceImpl();
 	private CategoryService categoryservice = new CategoryServiceImpl();
 	private BookService bookService = new BookServiceImpl();
+	private OrdersService ordersService = new OrdersServiceImpl();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		this.doPost(request,response);
@@ -84,11 +92,63 @@ public class ClientServlet extends HttpServlet {
 				else if("deleteBookInCart".equals(op)){
 					//购物车中删除一个条目
 					deleteBookInCart(request,response);
+				}else if("generatorOrders".equals(op)){
+					//生成订单
+					generatorOrders(request,response);
 				}
 				
 			}
 	
 	
+			private void generatorOrders(HttpServletRequest request,HttpServletResponse response) 
+			 		throws ServletException, IOException{
+				   //1. 判断 用户是否登录过了
+                HttpSession session = request.getSession();
+                Customer customer = (Customer) session.getAttribute("user");
+                if(customer==null){
+                        //说明没有登录
+                        response.getWriter().write("对不起，您没有登录，请先登录，再进行结算！");
+                        response.setHeader("Refresh", "2;URL="+request.getContextPath()+"/login.jsp");
+                        return ;
+                }
+                //2.生成订单(Cart--------------------Orders表              CartItem------------>ordersItem表)
+                Cart cart = (Cart) session.getAttribute("cart");
+                 //2.1Cart--------------------Orders表   
+                  Orders orders = new Orders();
+                  orders.setId(IDGenerator.genID());
+                  orders.setNum(cart.getTotalNum());//总数量
+                  orders.setPrice((float)cart.getTotalPrice());//总价格
+                  orders.setOrdernum(IDGenerator.genCode());//流水号
+                  orders.setStatus(0);//0代表未付款   1已付款   2已发货
+                  orders.setC(customer);//代表下单人
+                  // CartItem------------>ordersItem表
+                  Map<String,CartItem> map = cart.getMap();
+                  List<OrdersItem> list = new ArrayList<OrdersItem>();//订单明细列表
+                  for(Map.Entry<String,CartItem> entry :map.entrySet()){
+                          CartItem ci =  entry.getValue();
+                          OrdersItem oi = new OrdersItem();//生成订单明细对象
+                          oi.setBook(ci.getBook());
+                          oi.setId(IDGenerator.genID());
+                          oi.setNum(oi.getNum());
+                          oi.setPrice((float)ci.getPrice());
+
+                          list.add(oi);//添加一个明细元素
+                  }
+
+                //3.设置订单与订单明细之间的关系 （一个订单中可以包含多个明细）
+                orders.setItems(list);
+                //4.级联保存（Hibernate中有）
+                ordersService.addCascade(orders);
+
+                session.removeAttribute("cart");//清空购物车
+                //5.将订单对象存入request域中，转发到支付页面
+                request.setAttribute("o", orders);
+                request.getRequestDispatcher("/pay.jsp").forward(request, response);
+
+
+
+			}
+
 			//购物车中删除一个条目
 			private void deleteBookInCart(HttpServletRequest request,HttpServletResponse response) 
 			 		throws ServletException, IOException{

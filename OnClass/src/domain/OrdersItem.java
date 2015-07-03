@@ -1,12 +1,12 @@
 package domain;
 
-public class Ordersitem {
+public class OrdersItem {
 	                            
-	public Ordersitem() {
+	public OrdersItem() {
 		super();
 		// TODO 自动生成的构造函数存根
 	}
-	public Ordersitem(String id, int num, float price, Book book,
+	public OrdersItem(String id, int num, float price, Book book,
 			String bookid, String ordersid) {
 		super();
 		this.id = id;

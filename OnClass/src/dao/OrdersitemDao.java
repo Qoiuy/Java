@@ -1,7 +1,7 @@
 package dao;
 
-import domain.Ordersitem;
+import domain.OrdersItem;
 
-public interface OrdersitemDao extends Dao<Ordersitem> {
+public interface OrdersitemDao extends Dao<OrdersItem> {
 
 }
