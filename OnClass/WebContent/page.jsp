@@ -11,6 +11,6 @@
 		<li class="nextpage"><a href="${page.url }&pageNo=${page.nextp}">下一页&gt;&gt;</a>
 		<li class="nextpage"><a	href="${page.url }&pageNo=${page.totalPage}">尾页 &lt;&lt;</a></li>
 		</li>
-
+]
 	</ul>
 </div>
