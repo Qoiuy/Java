@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<p:user />
 	<!-- 确认支付form -->
 	<form action="https://www.yeepay.com/app-merchant-proxy/node"
 		method="get">

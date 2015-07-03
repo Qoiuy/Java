@@ -25,6 +25,7 @@ import service.impl.CategoryServiceImpl;
 import service.impl.CustomerServiceImpl;
 import utils.IDGenerator;
 import utils.PageBean;
+import web.form.Cart;
 /**
  * 前端控制器
  * @author root
@@ -76,9 +77,34 @@ public class ClientServlet extends HttpServlet {
 					//根据图书编号 查看详情
 					findBookDetailById(request,response);
 				}
+				else if("buyBook".equals(op)){
+					//购买
+					buyBook(request,response);
+				}
 				
 			}
-	 //根据图书编号，查看详情
+			private void buyBook(HttpServletRequest request,HttpServletResponse response) 
+			 		throws ServletException, IOException{
+				   //1.获取要购买书籍的id
+	                String id = request.getParameter("id");
+	                //2.调用业务方法，得到这本书的对象
+	                Book book = bookService.findBookById(id);
+	                //3.将书籍加入购物车,购物车经典代码 
+	                HttpSession session = request.getSession();
+	                Cart cart = (Cart) session.getAttribute("cart");
+	                if(cart==null){
+	                        //第一次
+	                        cart = new Cart();
+	                        session.setAttribute("cart", cart);
+	                }
+	                cart.addBook2Cart(book, 1);
+	
+	                //5.添加到购物车完成跳到显示购物车中商品的页面  cart.jsp
+	                response.sendRedirect(request.getContextPath()+"/cart.jsp");//重定向
+
+			}
+
+			//根据图书编号，查看详情
 			private void findBookDetailById(HttpServletRequest request,HttpServletResponse response) 
 					throws ServletException, IOException{
 				  //1.先得到参数id

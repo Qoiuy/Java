@@ -45,7 +45,7 @@
 											</div>
 
 											<div style="text-align:center; margin-top:25px">
-												<a href="${pageContext.request.contextPath }/cart.jsp">
+												<a href="${pageContext.request.contextPath }/servlet/ClientServlet?op=buyBook&id=${book.id}">
 													<img src="${pageContext.request.contextPath }/images/buybutton.gif" border="0" /> 
 												</a>
 											</div></td>
