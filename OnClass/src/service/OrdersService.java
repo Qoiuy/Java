@@ -17,5 +17,6 @@ public interface OrdersService {
      * @return
      */
     List<Orders> findOrdersByCustomerID(String id);
-
+    
+    public void updateStatusByOrderNum(String r6_Order);
 }

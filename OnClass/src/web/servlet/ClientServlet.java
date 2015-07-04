@@ -5,9 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
-import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,11 +14,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import domain.Book;
-import domain.Category;
-import domain.Customer;
-import domain.Orders;
-import domain.OrdersItem;
 import service.BookService;
 import service.CategoryService;
 import service.CustomerService;
@@ -35,6 +28,11 @@ import utils.PaymentUtil;
 import utils.PropertiesUtil;
 import web.form.Cart;
 import web.form.CartItem;
+import domain.Book;
+import domain.Category;
+import domain.Customer;
+import domain.Orders;
+import domain.OrdersItem;
 /**
  * 前端控制器
  * @author root
@@ -135,7 +133,7 @@ public class ClientServlet extends HttpServlet {
 			 		throws ServletException, IOException{
 				 //1.接收参数
                 String ordernum = request.getParameter("oid");
-                String money = request.getParameter("money");
+                String money = request.getParameter("price");
                 String pd_FrpId = request.getParameter("yh");//选择的银行
 
                 //2.将所有的参数保存到request域中   
@@ -357,7 +355,7 @@ public class ClientServlet extends HttpServlet {
 				String password =request.getParameter("password");
 				String sex = request.getParameter("sex");
 				String telephone = request.getParameter("telephone");
-				String id = request.getParameter("id");
+				//String id = request.getParameter("id");
 			//2更新对象中的属性值
 				HttpSession session = request.getSession();
 				Customer customer = (Customer)session.getAttribute("user");

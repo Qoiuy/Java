@@ -17,5 +17,10 @@ public class OrdersServiceImpl implements OrdersService {
 	public List<Orders> findOrdersByCustomerID(String id) {
 		 return ordersDao.findOrdersByCustomerID(id);
 	}
+	
+	 public void updateStatusByOrderNum(String r6_Order) {
+         ordersDao.updateStatusByOrderNum(r6_Order);
+
+	 }
 
 }

@@ -10,6 +10,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import utils.C3P0Utils;
 import dao.OrdersDao;
+import domain.Book;
 import domain.Customer;
 import domain.Orders;
 import domain.OrdersItem;
@@ -82,6 +83,33 @@ public class OrdersDaoImpl implements OrdersDao {
                 throw new RuntimeException(e);
         }
 }
+
+	
+	public void updateStatusByOrderNum(String r6_Order) {
+			try {
+	            qr.update("update orders set status=1 where ordernum=?",r6_Order);
+	    } catch (SQLException e) {
+	            e.printStackTrace();
+	            throw new RuntimeException(e);
+	    }
+	}
+
+	public List<OrdersItem> findOrdersItemByordersid(String id) {
+		 try {
+             List<OrdersItem> list =  qr.query("select * from ordersitem where ordersid=?",
+                             new BeanListHandler<OrdersItem>(OrdersItem.class), id);
+             //级联加载第个明细所对应图书记录
+             for(OrdersItem oi :list){
+                     Book book = qr.query("select * from Book where id=?", new BeanHandler<Book>(Book.class),oi.getBookid());
+                     oi.setBook(book);
+             }
+             return list;
+     } catch (SQLException e) {
+             e.printStackTrace();
+             throw new RuntimeException(e);
+     }
+
+	}
 
 		
 
