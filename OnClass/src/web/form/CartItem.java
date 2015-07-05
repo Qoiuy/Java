@@ -6,7 +6,6 @@ import domain.Book;
 /**
  * 购物明细
  * @author wangli
- *传智.宋江
  */
 public class CartItem {
     private Book book ;

@@ -11,7 +11,6 @@ import domain.Book;
 /**
  * 购物车
  * @author wangli
- *传智.宋江
  */
 public class Cart {
      private Map<String ,CartItem> map = new HashMap<String,CartItem>();
