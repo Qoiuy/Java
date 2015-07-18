@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="OnClass">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../home/soft/eclipse/"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.7"/>
+    <property name="source" value="1.7"/>
+    <path id="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath">
+        <pathelement location="WebContent/WEB-INF/lib/catalina.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/tomcat-dbcp.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jsp-api.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jasper.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/tomcat-api.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/tomcat-jdbc.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/catalina-ant.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jasper-el.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/tomcat-util.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/annotations-api.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/ecj-4.4.2.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/tomcat-i18n-ja.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/servlet-api.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/tomcat-coyote.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/catalina-ha.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/websocket-api.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/catalina-tribes.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/tomcat7-websocket.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/el-api.jar"/>
+    </path>
+    <path id="Web App Libraries.libraryclasspath">
+        <pathelement location="WebContent/WEB-INF/lib/activation.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/c3p0-0.9.1.2-jdk1.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/c3p0-0.9.1.2.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/c3p0-oracle-thin-extras-0.9.1.2.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-beanutils-1.8.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-dbcp-1.4.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-dbutils-1.4.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-fileupload-1.2.2.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-io-2.0.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-logging-1.1.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-pool-1.5.6.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jstl.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/log4j-1.2.17.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mail.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-5.0.8-bin.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/standard.jar"/>
+        <pathelement location="WebContent/WEB-INF/classes"/>
+    </path>
+    <path id="EAR Libraries.libraryclasspath"/>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="WebContent/WEB-INF/lib/junit.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+    </path>
+    <path id="OnClass.classpath">
+        <pathelement location="build/classes"/>
+        <path refid="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="build/classes"/>
+        <copy includeemptydirs="false" todir="build/classes">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="build/classes"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="OnClass.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="CategoryDaoTest.testUpdate">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.CategoryDaoTest" todir="${junit.output.dir}"/>
+            <classpath refid="OnClass.classpath"/>
+        </junit>
+    </target>
+    <target name="CustomerServiceImpl">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="service.impl.CustomerServiceImpl" todir="${junit.output.dir}"/>
+            <classpath refid="OnClass.classpath"/>
+        </junit>
+    </target>
+    <target name="CategoryDaoTest（1）">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="tset.CategoryDaoTest" todir="${junit.output.dir}"/>
+            <classpath refid="OnClass.classpath"/>
+        </junit>
+    </target>
+    <target name="Md5Utils">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="utils.Md5Utils" todir="${junit.output.dir}"/>
+            <classpath refid="OnClass.classpath"/>
+        </junit>
+    </target>
+    <target name="CategoryDaoTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.CategoryDaoTest" todir="${junit.output.dir}"/>
+            <classpath refid="OnClass.classpath"/>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+</project>
