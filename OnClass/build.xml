@@ -8,8 +8,8 @@
     <property name="ECLIPSE_HOME" value="../../../home/soft/eclipse/"/>
     <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="1.7"/>
-    <property name="source" value="1.7"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
     <path id="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath">
         <pathelement location="WebContent/WEB-INF/lib/catalina.jar"/>
         <pathelement location="WebContent/WEB-INF/lib/tomcat-dbcp.jar"/>
